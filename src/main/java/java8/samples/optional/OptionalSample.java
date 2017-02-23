@@ -4,6 +4,7 @@ import java.util.Optional;
 
 /**
  * Created by Tuna.Tore on 22-10-2016.
+ * This is new information in this file.
  */
 public class OptionalSample {
 
