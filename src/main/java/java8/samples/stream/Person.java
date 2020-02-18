@@ -29,5 +29,14 @@ public class Person {
 	}
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
-	}		 
+	}
+
+	@Override
+	public String toString() {
+		return "Person{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", departmentId=" + departmentId +
+				'}';
+	}
 }
