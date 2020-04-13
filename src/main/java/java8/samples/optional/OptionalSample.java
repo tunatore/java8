@@ -28,5 +28,4 @@ public class OptionalSample {
 
         System.out.println(nullable);
     }
-
 }

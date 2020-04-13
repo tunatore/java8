@@ -1,6 +1,7 @@
 package java8.samples.stream;
 
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 public class Stream1 {
@@ -28,6 +29,14 @@ public class Stream1 {
 							System.out.println("Element edited: " + element);
 					}	
 		);
-	}
 
+		//stream statistics
+		List<Integer> integerList = Arrays.asList(1,2,3,4,5,6,7,8);
+		IntSummaryStatistics statistics = integerList.stream().mapToInt(x -> x).summaryStatistics();
+		System.out.println("max: " + statistics.getMax());
+		System.out.println("min:" + statistics.getMin());
+		System.out.println("average: " + statistics.getAverage());
+		System.out.println("count: " + statistics.getCount());
+		System.out.println("sum:" + statistics.getSum());
+	}
 }
