@@ -1,9 +1,6 @@
 package java8.samples.stream;
 
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,5 +24,12 @@ public class StreamGroupBy {
                 .collect(Collectors.groupingBy(person -> person.departmentId, LinkedHashMap::new, Collectors.toList()));
 
         personGroupByDepartmentId.forEach((departmentId, person) -> System.out.format("Department %s %s\n", departmentId, person));
+
+        // partition by
+        List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Map<Boolean, List<Integer>> partitionMap = integerList.stream().collect(
+                Collectors.partitioningBy(i -> i % 2 == 0));
+        System.out.println("Even partition list: " + partitionMap.get(true));
+        System.out.println("Odd partition list: " + partitionMap.get(false));
     }
 }

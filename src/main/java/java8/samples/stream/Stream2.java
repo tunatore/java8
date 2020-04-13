@@ -1,15 +1,15 @@
 package java8.samples.stream;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Stream2 {
 
 	public static void main(String[] args) {
-		
+
 		//Stream 2
-		
 		System.out.println("Find first isPresent");
 		Arrays.asList("1","2","3", "tuna", "tore").stream()
 				.findFirst()
