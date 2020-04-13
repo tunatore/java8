@@ -30,7 +30,6 @@ public class StreamCustomSorted {
 				.forEach(person -> {					
 					System.out.println("department: " + person.getDepartmentId() 
 							+ " person id: " + person.getId() + " person name: " + person.getName());	
-				});		
-		
+				});
 	}
 }
