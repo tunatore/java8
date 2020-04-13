@@ -1,15 +1,16 @@
 package java8.samples.stream;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Stream1 {
 
 	public static void main(String[] args) {
 		
 		//Simple stream
-		
 		List<String> list = Arrays.asList("tuna","tore","1","2", "3", "stream1", "abc");
 		list.stream().forEach(System.out::println);
 	
@@ -38,5 +39,12 @@ public class Stream1 {
 		System.out.println("average: " + statistics.getAverage());
 		System.out.println("count: " + statistics.getCount());
 		System.out.println("sum:" + statistics.getSum());
+
+		//stream distinct elements
+		List<String> stringList = Arrays.asList("test", "test", "abc", "abc", "test2", "test3");
+		List<String> uniqueList = stringList.stream().distinct().collect(Collectors.toList());
+		System.out.println("unique list: " + uniqueList);
+		Collections.sort(uniqueList);
+		System.out.println("sorted unique list: " + uniqueList);
 	}
 }
