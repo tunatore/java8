@@ -7,7 +7,17 @@ import java.util.concurrent.*;
 public class ExecutorServiceSamples {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        executorService.submit(
+                () -> System.out.println(Thread.currentThread().getName())
+        );
+
+        //multiple task submitted
+        for (int i = 0; i < 10; i++) {
+            executorService.submit(
+                    () -> System.out.println(Thread.currentThread().getName())
+            );
+        }
 
         int i = 1;
         List<Callable<Integer>> callableList = Arrays.asList(
@@ -31,7 +41,7 @@ public class ExecutorServiceSamples {
         );
 
         Callable<String> callable1 = () -> {
-            TimeUnit.SECONDS.sleep(10);
+            TimeUnit.SECONDS.sleep(1);
             return "callable1";
         };
 
@@ -49,5 +59,8 @@ public class ExecutorServiceSamples {
 //        System.out.println("invokeAny: " + futureListInvokeAny);
 
         executorService.shutdown();
+
+        //doesn't wait running tasks and interrupts them
+        //executorService.shutdownNow();
     }
 }
