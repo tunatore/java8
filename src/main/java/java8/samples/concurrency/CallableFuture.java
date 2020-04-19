@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CallableFuture {
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
@@ -36,6 +35,28 @@ public class CallableFuture {
         List<Person> personListResult = callableOutputOfPersonSorter.get(10, TimeUnit.SECONDS);
         System.out.println("get: " + personListResult);
         System.out.println("isDone: " + callableOutputOfPersonSorter.isDone());
+
+        int i = 1;
+        List<Callable<Integer>> callableList = Arrays.asList(
+                () -> i * 2,
+                () -> i * 3,
+                () -> i * 4,
+                () -> i * 5,
+                () -> i * 6
+        );
+
+        List<Future<Integer>> callableFutureList = executorService.invokeAll(callableList);
+        callableFutureList.stream().map(future -> {
+            try {
+                return future.get();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }).forEach(result ->
+                System.out.println("result: " + result)
+        );
+
         executorService.shutdown();
     }
 }
