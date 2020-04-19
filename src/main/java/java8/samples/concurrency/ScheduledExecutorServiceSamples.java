@@ -20,11 +20,14 @@ public class ScheduledExecutorServiceSamples {
         };
 
         ScheduledFuture<?> scheduledFutureRunnable = scheduledExecutorService.scheduleAtFixedRate(task2, 0, 1, TimeUnit.SECONDS);
+        System.out.println("scheduledFutureRunnable isDone: " + scheduledFutureRunnable.isDone());
         while (count < 6 && !scheduledFuture.isCancelled()) {
-            System.out.println("Tasks running");
+            //System.out.println("Tasks running");
         }
-
+        System.out.println("scheduledFutureRunnable isDone: " + scheduledFutureRunnable.isDone());
+        TimeUnit.SECONDS.sleep(5);
         scheduledFutureRunnable.cancel(true);
+        System.out.println("scheduledFutureRunnable isDone: " + scheduledFutureRunnable.isDone());
         scheduledExecutorService.shutdown();
     }
 }
