@@ -2,7 +2,7 @@ package java8.samples.stream;
 
 public class Person {
 
-	Person(int id, String name, int departmentId) {
+	public Person(int id, String name, int departmentId) {
 		this.id = id;
 		this.name = name;
 		this.departmentId = departmentId;
