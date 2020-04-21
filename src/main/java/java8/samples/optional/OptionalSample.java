@@ -40,5 +40,41 @@ public class OptionalSample {
 
         System.out.println(nullable);
         System.out.println(nullable == Optional.empty());
+
+        Optional<String> optionalString = Optional.ofNullable("test123456");
+
+        // if (x!=null && x.contains("test")) {
+        //      System.out.println(x);
+        // }
+        optionalString.filter(x -> x.contains("test")).ifPresent(System.out::println);
+        if (optionalString.isPresent() && optionalString.get().contains("test")){
+            System.out.println(optionalString.get());
+        }
+
+        optionalString
+                .map(String::trim)
+                .filter(str -> str.startsWith("abc"))
+                .ifPresent(System.out::println);
+
+        optionalString = Optional.empty();
+        if (optionalString.isPresent() && optionalString.get().contains("test")){
+            System.out.println(optionalString.get());
+        }
+
+        // doesn't throw exception
+        optionalString
+                .map(String::trim)
+                .filter(str -> str.startsWith("abc"))
+                .ifPresent(System.out::println);
+
+        if (optionalString.map(String::length).orElse(-1) > 0) {
+            System.out.println("Not empty");
+        }else {
+            System.out.println("Empty");
+        }
+
+        //Throw an exception if an optional condition is not true
+        optionalString.filter(str -> str.length() > 0)
+                .map(s -> s.startsWith("test")).orElseThrow(RuntimeException::new);
     }
 }
