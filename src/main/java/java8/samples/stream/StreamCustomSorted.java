@@ -10,7 +10,13 @@ public class StreamCustomSorted {
 		//Single sorter
 		Comparator<Person> comparatorPerson = (p1, p2) -> Integer.compare(
 	            p1.getDepartmentId(), p2.getDepartmentId());
-		
+
+		//Single sorter comparingInt
+		Comparator<Person> comparatorComparingIntPerson = Comparator.comparingInt(Person::getDepartmentId);
+
+		//Reversed
+		Comparator<Person> personComparatorReversed = Comparator.comparing(Person::getId).reversed();
+
 		Stream.of(new Person(1,"tuna",10),
 				new Person(2,"tuna2",10),
 				new Person(2,"tuna3",20),
